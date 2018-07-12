@@ -7,11 +7,11 @@ class Welcome_model extends CI_Model {
         parent::__construct();
         // $this->load->database();
     }  
-	public function getCitiesModel() {
+	public function getCitiesModel($data) {
 		$ch = curl_init();
-	    curl_setopt($ch, CURLOPT_URL,"https://developers.zomato.com/api/v2.1/search?sort=rating&order=asc");
+	    curl_setopt($ch, CURLOPT_URL,"https://developers.zomato.com/api/v2.1/locations?query=".$data);
 	    curl_setopt($ch, CURLOPT_POST, 1);
-	    curl_setopt($ch, CURLOPT_POSTFIELDS,$vars);  //Post Fields
+	    curl_setopt($ch, CURLOPT_POSTFIELDS,true);  //Post Fields
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    $headers = [
 	        'user-key: f48512f2c2fcf05250f6b1e93d4d1e26',

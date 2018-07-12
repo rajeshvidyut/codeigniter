@@ -1,26 +1,24 @@
 	<!-- Search Section Starts -->
 		<section class="search-area parallax">
-	
 			<div class="container">
-
 			  <div class="row">
 			    <div class="col-xs-12">
 			      <div class="col-sm-3">
-	                <select class="form-control select2" id="SelectCountry">
-	                	<option data-tokens="china">Select Location</option>
-	  					<option data-tokens="malayasia">Malayasia</option>
-	  					<option data-tokens="singapore">Singapore</option>
-	                </select>
-	              </div>
-	              <div class="col-sm-9">
-	                <select class="form-control select2" id="select-country" >
-	                		<option data-tokens="china">China</option>
-	  					<option data-tokens="malayasia">Malayasia</option>
-	  					<option data-tokens="singapore">Singapore</option>
-	                </select>
+	            		<input type="text" class="form-control" id="SelectCountry" placeholder="Search Cities here" value="" />
+	                    <span id="SelectCountryList"></span>
+	                    <input type="hidden" id="CityId"/>
+	                    <input type="hidden" id="CountryId"/>
+	                    <input type="hidden" id="CtryName"/>
+	                    <input type="hidden" id="Latitude"/>
+	                    <input type="hidden" id="Longitude"/>
 
 	              </div>
-
+	              <div class="col-sm-7">
+		                <input type="text" class="form-control" id="SelectCountry" placeholder="Search restaurant here" />
+	              </div>
+	               <div class="col-sm-2">
+	               	    <button type="button" class="btn btn-danger">Search</button>
+	               </div>
 			    </div>
 			    <!-- /.col -->
 			  </div>
@@ -193,22 +191,28 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
 <script type="text/javascript">
-
 	$(document).ready(function(){
-		$("#SelectCountry").keyup(function(){		
-			$.ajax({
-				url     : '<?php echo URL.$controller_name; ?>/getCities',
-				data    : {},
-				type    : 'POST',
-				// contentType:false,
-				// cache: false,
-				// processData:false,
-				// traditional: true,
-				// enctype: 'multipart/form-data',
-				success:function(data){
-				   alert(data);
-				},
-			}); 
-		})
-	})
+		$("#SelectCountry").keyup(function(){
+	        var SelectCountry = $("#SelectCountry").val();
+            $.ajax({
+                url:"<?php echo URL.$controller_name; ?>/getCities",
+                type:"POST",
+                data:{SelectCountry:SelectCountry},
+                minLength:3,
+                success:function(data) {
+                	$("#SelectCountryList").show();
+                    $("#SelectCountryList").html(data);
+                }
+            });
+	    });
+	});
+	function SelectCities(CityId,CityName,CountryId,CountryName,Latitude,Longitude) {
+        $("#SelectCountry").val(CityName);
+        $("#CityId").val(CityId);
+        $("#CountryId").val(CountryId);
+        $("#CtryName").val(CountryName);
+        $("#Latitude").val(Latitude);
+        $("#Longitude").val(Longitude);
+        $("#SelectCountryList").hide();
+    }
 </script>

@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://localhost:8080/bingo/';
-$config['base_url'] = isset($_SERVER['CI_URL']) ? $_SERVER['CI_URL'] : 'http://localhost:8080/bingo/';
+$config['base_url'] = isset($_SERVER['CI_URL']) ? $_SERVER['CI_URL'] : 'http://localhost:8080/bingomvc/';
 
 defined('URL')  OR define('URL', $config['base_url']);
 
