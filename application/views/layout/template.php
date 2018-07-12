@@ -13,7 +13,7 @@
 	<link href="Assets/Css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Google Web Fonts -->
-	<link href="Assets/Css/css" rel="stylesheet" type="text/css">
+	<!-- <link href="Assets/Css/css" rel="stylesheet" type="text/css"> -->
 
 	<!-- Template CSS Files  -->
 	<link href="Assets/Css/font-awesome.min.css" rel="stylesheet">
@@ -24,18 +24,14 @@
 	<link href="Assets/Css/datepicker.css" rel="stylesheet">
 	<link href="Assets/Css/style.css" rel="stylesheet">
 	<link href="Assets/Css/responsive.css" rel="stylesheet">
-
-	<script type="text/javascript" charset="UTF-8" src="Assets/Js/common.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- <link href="https://rawgit.com/select2/select2/master/dist/css/select2.min.css" rel="stylesheet" /> -->
+	<!--<script type="text/javascript" charset="UTF-8" src="Assets/Js/common.js"></script>
 	<script type="text/javascript" charset="UTF-8" src="Assets/Js/util.js"></script>
-	<script type="text/javascript" charset="UTF-8" src="Assets/Js/stats.js"></script>
-	<script type="text/javascript" charset="UTF-8" src="Assets/Js/AuthenticationService.Authenticate"></script>
+	<script type="text/javascript" charset="UTF-8" src="Assets/Js/stats.js"></script> -->
+	<!-- <script type="text/javascript" charset="UTF-8" src="Assets/Js/AuthenticationService.Authenticate"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
-
-
 </head>
 	<body>
 
@@ -45,7 +41,7 @@
      
      <?php print_r($footer); ?>
 
-
+     
 
 	
 	<script src="Assets/Js/jquery-3.3.1.min.js"></script>
@@ -55,7 +51,9 @@
 	<script src="Assets/Js/bootstrap-datepicker.js"></script>
 	<script src="Assets/Js/owl.carousel.js"></script>
 	<script src="Assets/Js/jquery.magnific-popup.min.js"></script>
-	<script src="Assets/Js/js"></script>
-	<script src="Assets/Js/custom.js"></script>	
+	<!-- <script src="https://rawgit.com/select2/select2/master/dist/js/select2.js"></script> -->
+	<!-- <script src="Assets/Js/js"></script> -->
+	<!-- <script src="Assets/Js/custom.js"></script>	 -->
+	<?php print_r($customlayout); ?>
 	</body>
 </html>

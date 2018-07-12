@@ -2192,3 +2192,6 @@ h6 { font-size: 18px; }
      margin-bottom: 0px !important; 
     border: 1px solid transparent;
 }
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 15px)!important;
+}

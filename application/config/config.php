@@ -23,7 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080/bingo/';
+// $config['base_url'] = 'http://localhost:8080/bingo/';
+$config['base_url'] = isset($_SERVER['CI_URL']) ? $_SERVER['CI_URL'] : 'http://localhost:8080/bingo/';
+
+defined('URL')  OR define('URL', $config['base_url']);
 
 /*
 |--------------------------------------------------------------------------
