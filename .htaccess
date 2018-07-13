@@ -1,4 +1,5 @@
-SetEnv CI_URL http://localhost:8080/bingomvc/
+#SetEnv CI_URL http://192.168.1.10:8080/bingomvc/
+SetEnv CI_URL http://localhost:8080/bingomvc/ 
 SetEnv CI_ENV development
 <IfModule mod_rewrite.c>
 RewriteEngine On

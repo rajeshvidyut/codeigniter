@@ -259,12 +259,14 @@ h6 { font-size: 18px; }
 /* Header Styles Starts */
 
 .main-header {
-	padding-top: 15px;
-	padding-bottom: 20px;
-	background-color: #cf3d27;
+	padding-top: 10px;
+	padding-bottom: 6px;
+	background-color: #fff;
 }
 	.logo {
-		margin-top: 19px;
+		/*margin-top: 19px;*/
+		width: 100px;
+
 	}
 
 /* Top Links Styles Starts */
@@ -285,7 +287,8 @@ h6 { font-size: 18px; }
 		margin-bottom: 0;
 	}
 		.order-info li {
-			color: #fff;
+			color: #333;
+			/*background-color: #333;*/
 		}
 		.order-info li.lead {
 			margin-bottom: 0;
@@ -309,7 +312,7 @@ h6 { font-size: 18px; }
 .main-menu {
 	margin-bottom: 0;
 	padding: 0;
-	background-color: #ba3622;
+	background-color: #FFA400;
 	border: solid #ea4d35;
 	border-width: 1px 0 0 0;
 }	
@@ -325,7 +328,8 @@ h6 { font-size: 18px; }
 		.main-menu .navbar-nav > .nav-item > a:hover, 
 		.main-menu .navbar-nav > .nav-item > a:focus, 
 		.main-menu .navbar-nav > .nav-item.active > a {
-			background-color: #ea4d35;
+			background-color: #c0392b;
+			border-radius: 5px;
 		}
 		.main-menu .navbar-nav > .nav-item > a .fa {
 			margin-left: 8px;
