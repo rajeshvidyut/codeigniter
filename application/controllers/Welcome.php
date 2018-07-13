@@ -69,4 +69,56 @@ class Welcome extends MY_Controller {
 		$this->data['list'] 	  	= 	json_decode($this->Welcome_model->getRestaurentModel($ResId), TRUE);
 		echo $this->layout('about',$this->data, TRUE);
 	}
+	public function getRestaurants(){
+		$this->data['list'] 	  = $this->Welcome_model->getRestaurantInfo('restaurant');
+		$output = '';
+		foreach ($this->data['list'] as $row) {
+			$rating 	 = self::CountRating($row->id);
+			$color 		 = '';
+			$output 	.= '<h3 class="text-primary">'.$row->restaurantName.'</h3>
+								<ul class="list-inline" data-rating="'.$rating.'" title="Average Rating - '.$rating.'">
+								 ';
+								for($count=1; $count<=5; $count++){
+								  	if($count <= $rating){
+								   		$color = 'color:#ffcc00;';
+								  	}else{
+								   		$color = 'color:#ccc;';
+								  	}
+								  	$output .= '<li title="'.$count.'" id="'.$row->id.'-'.$count.'" data-index="'.$count.'"  data-business_id="'.$row->id.'" data-rating="'.$rating.'" class="rating" style="cursor:pointer; '.$color.' font-size:16px;">&#9733;</li>';
+								}
+								$output .= '
+								</ul>
+								<p>'.$row->address.'</p>
+								<label style="text-danger">'.$row->restaurantName.'</label>
+								<hr />
+								';
+		}
+		echo $output;
+	}
+	public function CountRating($restaurantId){
+		$this->data['list'] 	  = $this->Welcome_model->getRatingInfo('rating');
+		$output 				  = 0;
+		$Count = count($this->data['list']);
+		if($Count > 0){
+			foreach($this->data['list'] as $row){
+				$output = round($row->rating);
+			}
+		}
+		return $output;
+	}
+	public function sendRating(){
+		$index 		  = $this->input->post('index');
+		$restaurantId = $this->input->post('restaurantId');
+		$data = array(
+	        'userId'  		=> 1,
+	        'rating'		=> $index,
+	        'restaurantId'	=> $restaurantId,
+	        'rating'		=> $index,
+	        'description'	=> 'description'
+	    );
+		$RatingAdded 	    = $this->Welcome_model->sendRatingInfo('rating',$data);
+		if (isset($RatingAdded)) {
+            echo 'done';
+        }
+	}
 }

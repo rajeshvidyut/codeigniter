@@ -4,7 +4,7 @@ exit('No direct script access allowed');
 class Welcome_model extends CI_Model {
     public function __construct() {
         parent::__construct();
-        // $this->load->database();
+        $this->load->database();
     }  
 	public function getCitiesModel($data) {
 	   	return self::commonCurl("https://developers.zomato.com/api/v2.1/locations?query=".$data);
@@ -14,6 +14,23 @@ class Welcome_model extends CI_Model {
 	}
 	public function getRestaurentModel($restaurantId) {
 		return self::commonCurl("https://developers.zomato.com/api/v2.1/restaurant?res_id=".$restaurantId);
+	}
+	public function getRestaurantInfo($dbName){
+		$this->db->select('*');
+        $this->db->from($dbName);
+        $query = $this->db->get();
+        return $result = $query->result();
+	}
+	public function getRatingInfo($dbName){
+		$this->db->select('*');
+        $this->db->from($dbName);
+        $query = $this->db->get();
+        return $result = $query->result();
+	}
+	public function sendRatingInfo($dbName,$data){
+        $this->db->insert($dbName, $data);
+        $LastInsertId = $this->db->insert_id();
+        return $LastInsertId;
 	}
 	public function commonCurl($url){
 		$ch 	 = curl_init();

@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS `rating` (
+  `rating_id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `restaurantId` int(11) NOT NULL,
+  `rating` int(11) NOT NULL
+  `description` text
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1
+ALTER TABLE rating CHANGE rating_id rating_id INT(10)AUTO_INCREMENT PRIMARY KEY;
+INSERT INTO `rating` (`rating_id`, `userId`, `restaurantId`,`rating`,`description`) VALUES
+(1, 1, 1,5, 'good'),
+
+
+CREATE TABLE IF NOT EXISTS restaurant (
+  -> id int(11) NOT NULL,
+  -> restaurantName varchar(300) NOT NULL,
+  -> address text NOT NULL,
+  -> definition text NOT NULL) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+  ALTER TABLE restaurant CHANGE id id INT(10)AUTO_INCREMENT PRIMARY KEY;
+
+
+CREATE TABLE IF NOT EXISTS users (
+  -> userId int(11) NOT NULL,
+  -> userName varchar(100) NOT NULL,
+  -> userEmail text NOT NULL,
+  -> createdTime timestamp) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+  INSERT INTO `users` (`userId`, `userName`, `userEmail`) VALUES
+(1, 'Rajesh','rajesh@gmail.com'),
+  ALTER TABLE users CHANGE userId userId INT(10)AUTO_INCREMENT PRIMARY KEY;
