@@ -32,6 +32,11 @@ class Welcome_model extends CI_Model {
         $LastInsertId = $this->db->insert_id();
         return $LastInsertId;
 	}
+	public function sendRestaurantInfo($dbName,$data){
+        $this->db->insert($dbName, $data);
+        $LastInsertId = $this->db->insert_id();
+        return $LastInsertId;
+	}
 	public function commonCurl($url){
 		$ch 	 = curl_init();
 	    curl_setopt($ch, CURLOPT_URL,$url);

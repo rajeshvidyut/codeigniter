@@ -72,15 +72,44 @@
 									<div class="reviews-form-box">
 										<h6>Write a Review</h6>
 										<form>
-											<textarea class="form-control" rows="4" placeholder="Message should be atleast 130 charecters"></textarea>
+											<textarea class="form-control" id="descrpt" rows="4" placeholder="Message should be atleast 130 charecters"></textarea>
 											<div class="clearfix">
 												<br />
 												<span id="business_list"></span>
+												<input type="hidden" id="RestId" value="<?php echo $list['R']['res_id']; ?>">
+												<input type="hidden" id="RestName" value="<?php echo $list['name']; ?>">
+												<input type="hidden" id="RestLocation" value="<?php echo $list['location']['address']; ?>">
+												<input type="hidden" id="RestCuisines" value="<?php echo $list['cuisines']; ?>">
 												<br />
 												<br />
-												<a href="#" class="btn btn-black animation text-uppercase float-right">Submit</a>
+												<!-- <a href="#" class="btn btn-black animation text-uppercase float-right">Submit</a> -->
+												<a href="#" id="SubmitReview" class="btn btn-black animation text-uppercase float-right" data-toggle="modal" data-target="#myModal">Submit</a>
 											</div>
 										</form>
+									</div>
+									<!-- Modal -->
+									<div id="myModal" class="modal fade" role="dialog">
+									  <div class="modal-dialog">
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									      <div class="modal-body">
+									        <h4>Please fill this before review</h4><hr>
+									        <div class="form-group">
+												<label for="text">Username:</label>
+												<input type="email" name="UserName" class="form-control" id="UserName">
+											</div>
+											<div class="form-group">
+												<label for="email">Email address:</label>
+												<input type="email" name="UserEmail" class="form-control" id="UserEmail">
+											</div>
+											<button type="submit" class="btn btn-success" id="UserInfo">Submit</button>
+
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									      </div>
+									    </div>
+									  </div>
 									</div>
 									<div class="reviews-box">
 										<div class="review-list">
@@ -184,16 +213,44 @@
 			}
 		}
 		$(document).on('click', '.rating', function(){
-			var index 		 = $(this).data("index");
-			var restaurantId = $(this).data('business_id');
+			// $( "#UserInfo" ).trigger( "click" );
+			var rating 		 = $(this).data("index");
+			var restaurantid = $(this).data('business_id');
+			var descrpt		 = $("#descrpt").val();
+
 			$.ajax({
 				url 	: "<?php echo URL.$controller_name; ?>/sendRating",
 				method  : "POST",
-				data 	: { index:index, restaurantId:restaurantId },
+				data 	: { restaurantid:restaurantid, descrpt:descrpt, rating:rating },
 				success : function(data){
 					if(data == $.trim('done')){
 			 			LoadRatingData();
-			 			alert("You have rate "+index +" out of 5");
+			 			// alert("You have rate "+rating +" out of 5");
+			 			alert("Rating"+rating);
+
+					}else{
+			 			alert("There is some problem in System");
+					}
+				}
+		 	});
+		});	
+		$(document).on('click', '#UserInfo', function(){
+			var username		 = $("#UserName").val();
+			var useremail		 = $("#UserEmail").val();
+			// var descrpt		 	 = $("#descrpt").val();
+			var restid		 	 = $("#RestId").val();
+			// var restname		 = $("#RestName").val();
+			// var restlocation	 = $("#RestLocation").val();
+			// var restcuisines	 = $("#RestCuisines").val();
+			$.ajax({
+				url 	: "<?php echo URL.$controller_name; ?>/sendRestaurant",
+				method  : "POST",
+				data 	: {username:username, useremail:useremail, restid:restid},
+				success : function(data){
+					if(data == $.trim('done')){
+			 			LoadRatingData();
+			 			alert("Thank you for your reviewed");
+			 			location.reload();
 					}else{
 			 			alert("There is some problem in System");
 					}

@@ -76,22 +76,22 @@ class Welcome extends MY_Controller {
 			$rating 	 = self::CountRating($row->id);
 			$color 		 = '';
 			$output 	.= '<h3 class="text-primary">'.$row->restaurantName.'</h3>
-								<ul class="list-inline" data-rating="'.$rating.'" title="Average Rating - '.$rating.'">
-								 ';
-								for($count=1; $count<=5; $count++){
-								  	if($count <= $rating){
-								   		$color = 'color:#ffcc00;';
-								  	}else{
-								   		$color = 'color:#ccc;';
-								  	}
-								  	$output .= '<li title="'.$count.'" id="'.$row->id.'-'.$count.'" data-index="'.$count.'"  data-business_id="'.$row->id.'" data-rating="'.$rating.'" class="rating" style="cursor:pointer; '.$color.' font-size:16px;">&#9733;</li>';
-								}
-								$output .= '
-								</ul>
-								<p>'.$row->address.'</p>
-								<label style="text-danger">'.$row->restaurantName.'</label>
-								<hr />
-								';
+							<ul class="list-inline" data-rating="'.$rating.'" title="Average Rating - '.$rating.'">
+							 ';
+							for($count=1; $count<=5; $count++){
+							  	if($count <= $rating){
+							   		$color = 'color:#ffcc00;';
+							  	}else{
+							   		$color = 'color:#ccc;';
+							  	}
+							  	$output .= '<li title="'.$count.'" id="'.$row->id.'-'.$count.'" data-index="'.$count.'"  data-business_id="'.$row->id.'" data-rating="'.$rating.'" class="rating" style="cursor:pointer; '.$color.' font-size:16px;">&#9733;</li>';
+							}
+							$output .= '
+							</ul>
+							<p>'.$row->address.'</p>
+							<label style="text-danger">'.$row->restaurantName.'</label>
+							<hr />
+							';
 		}
 		echo $output;
 	}
@@ -106,19 +106,45 @@ class Welcome extends MY_Controller {
 		}
 		return $output;
 	}
-	public function sendRating(){
-		$index 		  = $this->input->post('index');
-		$restaurantId = $this->input->post('restaurantId');
+	public function sendRating($param='',$post){
+		$restaurantId = $post['restid'];
+		$rating 	  = $post['rating'];
+		$descrpt 	  = $post['descrpt'];
 		$data = array(
-	        'userId'  		=> 1,
-	        'rating'		=> $index,
+	        'userId'  		=> $param,
 	        'restaurantId'	=> $restaurantId,
-	        'rating'		=> $index,
-	        'description'	=> 'description'
+	        'rating'		=> $rating,
+	        'description'	=> $descrpt
 	    );
 		$RatingAdded 	    = $this->Welcome_model->sendRatingInfo('rating',$data);
 		if (isset($RatingAdded)) {
             echo 'done';
+        }
+	}
+	public function sendRestaurant(){
+		// $restname 	  = $this->input->post('restname');
+		// $restaurantId = $this->input->post('restid');
+		// $restlocation = $this->input->post('restlocation');
+		// $restaurantId = $this->input->post('restid');
+		// $restcuisines = $this->input->post('restcuisines');
+		$username 	  = $this->input->post('username');
+		$useremail 	  = $this->input->post('useremail');
+		$restid 	  = $this->input->post('restid');
+
+		$rating 	  = $this->input->post('rating');
+		$descrpt 	  = $this->input->post('descrpt');
+
+		$data = array(
+	        'userName'		=> $username,
+	        'userEmail'		=> $useremail,
+	        'restaurantId'	=> $restid,
+	    );
+		$RestaurantAdded 	    = $this->Welcome_model->sendRestaurantInfo('users',$data);
+		if ($RestaurantAdded!="") {
+        	self::sendRating($RestaurantAdded,$_POST);	
+            echo 'done';
+        }else{
+        	echo "done";
         }
 	}
 }
